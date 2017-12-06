@@ -19,7 +19,7 @@
 					<li>
 						<a href="#">我的京东</a>
 						<div class="l_left"></div>
-						<i class="arrow_down"> </i>
+						<i class="arrow_down"></i>
 					</li>
 					<li><a href="#">京东会员</a><div class="l_left"></div></li>
 					<li><a href="#">企业采购</a><div class="l_left"></div></li>
