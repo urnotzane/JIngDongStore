@@ -18,6 +18,7 @@ a {
 	font-size:12px;
 	font-family:"Microsoft YaHei"
 	color:#ccc;
+	z-index:88;
 }
 #top a:link{
 	color:rgb(157,160,160);
@@ -30,6 +31,10 @@ a {
 }
 #top a:active{
 	color:rgb(157,160,160);
+}
+#search_menu,#main_t,#main_b{
+	width:1192px;
+	margin:0 auto;
 }
 #free_sign a:link{
 	color:#f10215;
@@ -50,6 +55,7 @@ a {
 }
 #top_mid li,#nav_items li {
 	display:inline-block;
+	padding:0 5px;
 }
 #top_mid li{
 	height:30px;
@@ -72,7 +78,7 @@ a {
 	width:1px;
 	height:10px;
 	background-color:#ccc;
-	margin: 10px 10px 0 10px;
+	margin: 10px 5px 0 5px;
 }
 .icon_{
 	position:relative;
@@ -82,7 +88,52 @@ a {
 	height:12px;
 	line-height:30px;
 }
-
+#header{
+	position:relative;
+	z-index:89;
+}
+#logo img{
+	margin-top:-30px;
+	box-shadow:5px 0px 5px -5px #ccc, -5px 0px 5px -5px #ccc;
+}
+#search_menu{
+	position:relative;
+	width:1192px;
+	height:140px;
+}
+#search_menu div{
+	display:inline-block;
+}
+#search_{
+	position:absolute;
+	left:320px;
+	top:25px;
+	width:550px;
+	height:35px;
+	
+}
+#search_in{
+	width:490px;
+	height:25px;
+	padding:4px;
+	margin:0 auto;
+	line-height:20px;
+	font-size:14px;
+	border:1px solid #f10215;
+	outline:none;
+	display:inline-block;
+}
+#search_sub{
+	position:relative;
+	top:-1px;
+	width:50px;
+	height:35px;
+	background-color:#f10215;
+	border:none;
+	display:inline-block;
+	outline:none;
+	margin-left:-9px;
+}
 
 
 
