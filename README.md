@@ -17,7 +17,7 @@
 ## 心得  
 １、z-index的使用需要标签添加position属  
 ２、input和button标签无法对齐，只好使用position来设置位置，网上说的用span标签包裹的办法并不好使  
-３、position的absolute是相对于父元素的吗，好像是的  
+３、position的absolute是相对于父元素  
 ４、outline:none去掉input\button的默认边框  
 				2017\12\7
 ***
