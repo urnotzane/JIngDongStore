@@ -442,9 +442,30 @@ img.lef_img{
 	margin-right:10px;
 	display:inline-block;
 	background-color:#fff;
+	position:relative;
 }
-
-
+#img_menu{
+	position:absolute;
+	top:300px;
+	left:303px;
+	width:182px;
+	height:20px;
+	background-color:#fff;
+	border-radius:10px;
+	background-color:rgba(255,255,255,0.2);
+	padding-left:10px;
+}
+#img_menu div{
+	display:inline-block;
+	width:12px;
+	height:12px;
+	border-radius:6px;
+	background-color:#fff;
+	margin:4px 4px 4px 2px;
+}
+#img_menu div:first-child{
+	background-color:rgb(200,12,34);
+}
 #goods_nav_midt{
 	width:790px;
 	height:340px;
@@ -538,32 +559,32 @@ img.lef_img{
 	background-color:#e01222;
 }
 #callboard{
-	width:160px;
+	position:absolute;
+	top:117px;
+	width:190px;
 	height:154px;
 	border-bottom:1px solid rgb(230,230,230);
-	padding:0 15px;
+	z-index:200;
+	background-color:#fff;
 }
 #callboard_head{
-	position:relative;
+	position:absolute;
 	width:160px;
-	height:14px;
-	padding:8px 0 4px 0;
+	height:20px;
+	padding:8px 0 0px 0;
+	margin:0 15px;
 	line-height:14px;
 	font-size:12px;
 	color:rgb(116,111,106);
 	border-bottom:1px solid rgb(230,230,230);
 }
-#callboard_head a:link{
-	color:rgb(116,111,106);
-}
-#callboard_head a:visited{
-	color:rgb(116,111,106);
-}
 #callboard_head a:hover{
 	color:rgb(200,21,34);
 }
-#callboard_head a:active{
+#callboard_head a{
 	color:rgb(116,111,106);
+	padding-bottom:4px;
+	
 }
 .promotion{
 	padding-right:12px;
@@ -580,6 +601,11 @@ img.lef_img{
 #call_main{
 	font-size:12px;
 	margin-top:12px;
+	position:absolute;
+	top:26px;
+	z-index:200;
+	background-color:#fff;
+	padding:0 15px;
 }	
 #call_main a:link{
 	color:rgb(116,111,106);
@@ -600,10 +626,13 @@ img.lef_img{
 	line-height:24px;
 }
 #func{
-	width:190px;
-	height:210px;
-	position:relative;
-	top:-1px;
+	
+	position:absolute;
+	top:271px;
+	z-index:100;
+}
+#func ul:first-child{
+	z-index:100;
 }
 li.func_{
 	position:relative;
@@ -616,7 +645,11 @@ li.func_{
 	padding-top:14px;
 	border-top:1px solid #e7e7e7;
 	border-left:1px solid #e7e7e7;
-	
+	z-index:100;
+}
+li.func_ span{
+	display:inline-block;
+	width:46px;
 }
 #func a:link{
 	color:rgb(116,111,106);
@@ -631,34 +664,68 @@ li.func_{
 	color:rgb(116,111,106);
 }
 .func_detail{
+	position:absolute;
+	top:22px;
 	width:170px;
 	font-size:12px;
 	padding:10px;
+	background-color:#fff;
+	z-index:101;
 }
 .func_detail li{
 	display:inline-block;
 	width:45px;
 	height:20px;
-	line-height:20px;
-	background-color:rgb(200,21,34);
-	color:#fff;
+	line-height:18px;
+	background-color:#fff;
+	color:#666;
 	text-align:center;
-	margin-bottom:15px;	
+	margin:15px 0;	
 }
-.func_detail_m{
+.func_detail li:hover{
+	color:#fff;
+	background-color:rgb(200,21,34);
+}
+.func_detail{
 	display:none;
 }
-input#game_input{
+#pay_select{
+	width:50px;
+	color:#aaa;
+	border:1px solid #ccc;
+	height:20px;
+	line-height:20px;
+	background-color:#fff;
+	margin-bottom:10px;
+}
+#recharge{
+	margin-top:10px;
+	background-color:rgb(200,21,34);
+	color:#fff;
+	padding:5px 10px;
+	outline:none;
+	border:none;
+}
+#game_input{
+	border:1px solid #ccc;
+	margin-bottom:10px;
+}
+#game_input input{
 	outline:none;
 	border:none;
 	padding:2px 10px;
-	margin-bottom:10px;
+	margin-top:-1px;
+	background-color:#eee;
+	color:#aaa;
 }
-#game_select{
+#game_input select{
 	background-color:#fff;
 	border:none;
-	padding:2px 10px;
-	margin-bottom:10px;
+	padding:1px 10px;
+	outline:none;
+	width:120px;
+	margin-left:-3px;
+	color:#aaa;
 }
 .nav_detail{
 	width:980px;
