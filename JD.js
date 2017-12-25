@@ -65,9 +65,9 @@ var getElementsByClassName = function(classname) {
 
 //鼠标划过时的函数	
 var navDetailAnimation = function() {
-	//定义变量
-	var nav_ul = document.getElementById("nav_ul");
-	var nav_li = nav_ul.getElementsByTagName("li");
+	//定义变量 
+	var nav_a = getElementsByClassName("nav_a");
+	var nav_li = getElementsByClassName("nav_li");
 	var nav_detail = getElementsByClassName("nav_detail");
 	var goods_nav_left = document.getElementById("goods_nav_left");
 	//调用动画
@@ -86,7 +86,7 @@ var navDetailAnimation = function() {
 		}
 		var hideDetail = function() {
 			for(var j = 0;j < nav_detail.length;j++) {
-				EventUtil.addHandler(nav_li[j], "mouseover", showDetail);
+				this.style.backgroundColor = "rgba(255,255,255,1)";
 				nav_detail[j].style.display = "none";
 				this.style.backgroundColor = "#6e6568";
 				
@@ -99,7 +99,39 @@ var navDetailAnimation = function() {
 
 addLoadEvent(navDetailAnimation);
 
+//白点切换图片
+var picToggleAnimation = function() {
+	var img_menu = document.getElementById("img_menu");
+	var menu_div = img_menu.getElementsByTagName("div");
+	var goods_nav_img = document.getElementById("goods_nav_img");
+	//如果没有红点第一个白点为红点或者当前鼠标最后经过的白点
+	var dotToggle = function() {
+		
+	}
+	//动画效果
+	var showPic  = function() {
+		this.style.backgroundColor = "rgb(200,12,34)";
+		var src = this.getAttribute("data-src");
+		//this.setAttribute("data-red", "red");
+		goods_nav_img.getElementsByTagName("img")[0].setAttribute("src", src);
+	}
+	var hidePic  = function() {
+		this.style.backgroundColor = "rgb(255,255,255)";
+		//this.setAttribute("data-red", "");
+	}
+	for (var i = 0;i < menu_div.length;i++) {
+		if(menu_div[i].style.backgroundColor !== "rgb(255,255,255)") {
+			
+		}
+		
+		
+		
+		EventUtil.addHandler(menu_div[i], "mouseover",showPic);
+		EventUtil.addHandler(menu_div[i], "mouseout",hidePic);
+	}
+}
 
+addLoadEvent(picToggleAnimation);
 
 
 
