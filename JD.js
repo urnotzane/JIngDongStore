@@ -105,9 +105,7 @@ var picToggleAnimation = function() {
 	var menu_div = img_menu.getElementsByTagName("div");
 	var goods_nav_img = document.getElementById("goods_nav_img");
 	//如果没有红点第一个白点为红点或者当前鼠标最后经过的白点
-	var dotToggle = function() {
-		
-	}
+	
 	//动画效果
 	var showPic  = function() {
 		this.style.backgroundColor = "rgb(200,12,34)";
@@ -119,6 +117,43 @@ var picToggleAnimation = function() {
 		this.style.backgroundColor = "rgb(255,255,255)";
 		//this.setAttribute("data-red", "");
 	}
+	//改变图片
+	var changePic = function(){
+		menu_div[i].style.backgroundColor = "rgb(200,12,34)";
+		src = menu_div[i].getAttribute("data-src");
+		goods_nav_img.getElementsByTagName("img")[0].setAttribute("src", src);
+	}
+	//修改白点
+	var changeDot = function(){
+		menu_div[j].style.backgroundColor = "rgb(255,255,255)";
+	}
+	//3秒钟切换一次图片，分离图片地址字符串，根据数字确定哪张图片
+	var picToggle = function() {
+		var i =0;
+		setInterval(function(){
+			if(i < menu_div.length) {
+				changePic();
+				for(var j = 0;j < menu_div.length; j++){
+					if( j == i){
+						continue;
+					}
+					changeDot();
+				}
+				
+			console.log(i);
+			i++;
+			}
+		},3000);
+		
+	}
+	//定时切换图片
+	var dotToggle = function() {
+		picToggle();
+		setInterval(function(){
+			picToggle();
+		},menu_div.length*3000);
+	}
+	dotToggle();
 	for (var i = 0;i < menu_div.length;i++) {
 		if(menu_div[i].style.backgroundColor !== "rgb(255,255,255)") {
 			
