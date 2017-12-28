@@ -104,65 +104,68 @@ var picToggleAnimation = function() {
 	var img_menu = document.getElementById("img_menu");
 	var menu_div = img_menu.getElementsByTagName("div");
 	var goods_nav_img = document.getElementById("goods_nav_img");
-	//如果没有红点第一个白点为红点或者当前鼠标最后经过的白点
 	
-	//动画效果
-	var showPic  = function() {
-		this.style.backgroundColor = "rgb(200,12,34)";
-		var src = this.getAttribute("data-src");
-		//this.setAttribute("data-red", "red");
-		goods_nav_img.getElementsByTagName("img")[0].setAttribute("src", src);
-	}
-	var hidePic  = function() {
-		this.style.backgroundColor = "rgb(255,255,255)";
-		//this.setAttribute("data-red", "");
-	}
+	//如果没有红点第一个白点为红点或者当前鼠标最后经过的白点
 	//改变图片
 	var changePic = function(){
 		menu_div[i].style.backgroundColor = "rgb(200,12,34)";
 		src = menu_div[i].getAttribute("data-src");
 		goods_nav_img.getElementsByTagName("img")[0].setAttribute("src", src);
 	}
-	//修改白点
-	var changeDot = function(){
-		menu_div[j].style.backgroundColor = "rgb(255,255,255)";
-	}
+	
 	//3秒钟切换一次图片，分离图片地址字符串，根据数字确定哪张图片
+	var k = 0;
+	var timer1;
 	var picToggle = function() {
-		var i =0;
-		setInterval(function(){
-			if(i < menu_div.length) {
-				changePic();
-				for(var j = 0;j < menu_div.length; j++){
-					if( j == i){
-						continue;
-					}
-					changeDot();
-				}
-				
-			console.log(i);
-			i++;
-			}
-		},3000);
-		
-	}
-	//定时切换图片
-	var dotToggle = function() {
-		picToggle();
-		setInterval(function(){
-			picToggle();
-		},menu_div.length*3000);
-	}
-	dotToggle();
-	for (var i = 0;i < menu_div.length;i++) {
-		if(menu_div[i].style.backgroundColor !== "rgb(255,255,255)") {
-			
+		if(k >= menu_div.length) {
+			k = 0;
 		}
-		
-		
-		
+		menu_div[k].style.backgroundColor = "rgb(200,12,34)";
+		src = menu_div[k].getAttribute("data-src");
+		goods_nav_img.getElementsByTagName("img")[0].setAttribute("src", src);
+		//鼠标移出后将该红点设置为白色
+		var j = k - 1;
+		if( j < 0) {
+			j = 7;
+		}
+		console.log(menu_div[j].style.backgroundColor);
+		menu_div[j].style.backgroundColor = "rgb(255,255,255)";
+		console.log("k = "+k+" ; j = " +j+" ; "+menu_div[j].style.backgroundColor);
+		k++;
+	}
+	//定时切换图片，一个函数不要定义太多内含的定时器，很难控制！
+	var timerPicToggle = function(){
+		timer1 = setInterval(function(){
+			picToggle();
+			},3000);
+	}
+	timerPicToggle();
+	//进入图片窗口取消定时器
+	var clearTimer = function() {
+		console.log(1);
+		window.clearInterval(timer1);
+	}
+	EventUtil.addHandler(goods_nav_img, "mouseover",clearTimer);
+	EventUtil.addHandler(goods_nav_img, "mouseout",timerPicToggle);
+	//动画效果
+	var showPic  = function() {
+		for(var i = 0;i < menu_div.length; i++) {
+			menu_div[i].style.backgroundColor = "rgb(255,255,255)";
+		}
+		this.style.backgroundColor = "rgb(200,12,34)";
+		var src = this.getAttribute("data-src");
+		//更换图片区域图片地址
+		goods_nav_img.getElementsByTagName("img")[0].setAttribute("src", src);
+	}
+	//鼠标移出红点后获取白点位置赋值于K
+	var hidePic  = function() {
+		k = this.getAttribute("data-src").split("")[4];
+	}
+	//给每个白点添加事件
+	for (var i = 0;i < menu_div.length;i++) {
 		EventUtil.addHandler(menu_div[i], "mouseover",showPic);
 		EventUtil.addHandler(menu_div[i], "mouseout",hidePic);
+		EventUtil.addHandler(menu_div[i], "mouseover",clearTimer);
 	}
 }
 
