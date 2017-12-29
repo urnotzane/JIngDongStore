@@ -98,10 +98,10 @@ var navDetailAnimation = function() {
 }
 
 addLoadEvent(navDetailAnimation);
-
+var img_menu = document.getElementById("img_menu");
+var pageover = getElementsByClassName("pageover");
 //白点切换图片
 var picToggleAnimation = function() {
-	var img_menu = document.getElementById("img_menu");
 	var menu_div = img_menu.getElementsByTagName("div");
 	var goods_nav_img = document.getElementById("goods_nav_img");
 	
@@ -128,9 +128,7 @@ var picToggleAnimation = function() {
 		if( j < 0) {
 			j = 7;
 		}
-		console.log(menu_div[j].style.backgroundColor);
 		menu_div[j].style.backgroundColor = "rgb(255,255,255)";
-		console.log("k = "+k+" ; j = " +j+" ; "+menu_div[j].style.backgroundColor);
 		k++;
 	}
 	//定时切换图片，一个函数不要定义太多内含的定时器，很难控制！
@@ -138,12 +136,16 @@ var picToggleAnimation = function() {
 		timer1 = setInterval(function(){
 			picToggle();
 			},3000);
+		pageover[0].style.display = "none";
+		pageover[1].style.display = "none";
 	}
 	timerPicToggle();
 	//进入图片窗口取消定时器
 	var clearTimer = function() {
-		console.log(1);
 		window.clearInterval(timer1);
+		//图片翻页键显示
+		pageover[0].style.display = "block";
+		pageover[1].style.display = "block";
 	}
 	EventUtil.addHandler(goods_nav_img, "mouseover",clearTimer);
 	EventUtil.addHandler(goods_nav_img, "mouseout",timerPicToggle);
@@ -161,6 +163,45 @@ var picToggleAnimation = function() {
 	var hidePic  = function() {
 		k = this.getAttribute("data-src").split("")[4];
 	}
+	
+	var picToggle_ = function() {
+		if(k >= menu_div.length) {
+			k = 0;
+		}
+		if(k < 0){
+			
+		}
+		menu_div[k].style.backgroundColor = "rgb(200,12,34)";
+		src = menu_div[k].getAttribute("data-src");
+		goods_nav_img.getElementsByTagName("img")[0].setAttribute("src", src);
+		//鼠标移出后将该红点设置为白色
+		var j = k + 1;
+		if( j < 0) {
+			j = 7;
+		}
+		menu_div[j].style.backgroundColor = "rgb(255,255,255)";
+		k++;
+	}
+	//图片翻页键
+	var pagePre = function() {
+		k = goods_nav_img.getElementsByTagName("img")[0];
+		picToggle_();
+		console.log(1);
+		//.getAttribute("data-src").split("")[4]-1
+	}
+	var pageNext = function() {
+		k = goods_nav_img.getElementsByTagName("img")[0].getAttribute("data-src").split("")[4]+1;
+		picToggle();
+		console.log(k);
+	}
+	var pageOpacity = function() {
+		this.style.display = "block";
+		this.style.opacity = "rgba(0,0,0,0.3)";
+	}
+	EventUtil.addHandler(pageover[0], "click", pagePre);
+	EventUtil.addHandler(pageover[1], "click", pageNext);
+	EventUtil.addHandler(pageover[0], "mouseover", pageOpacity);
+	EventUtil.addHandler(pageover[1], "mouseo", pageOpacity);
 	//给每个白点添加事件
 	for (var i = 0;i < menu_div.length;i++) {
 		EventUtil.addHandler(menu_div[i], "mouseover",showPic);
@@ -170,7 +211,6 @@ var picToggleAnimation = function() {
 }
 
 addLoadEvent(picToggleAnimation);
-
 
 
 
