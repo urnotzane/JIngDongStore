@@ -98,21 +98,15 @@ var navDetailAnimation = function() {
 }
 
 addLoadEvent(navDetailAnimation);
+
 var img_menu = document.getElementById("img_menu");
+var menu_div = img_menu.getElementsByTagName("div");
+var goods_nav_img = document.getElementById("goods_nav_img");
 var pageover = getElementsByClassName("pageover");
 //白点切换图片
 var picToggleAnimation = function() {
-	var menu_div = img_menu.getElementsByTagName("div");
-	var goods_nav_img = document.getElementById("goods_nav_img");
 	
-	//如果没有红点第一个白点为红点或者当前鼠标最后经过的白点
-	//改变图片
-	var changePic = function(){
-		menu_div[i].style.backgroundColor = "rgb(200,12,34)";
-		src = menu_div[i].getAttribute("data-src");
-		goods_nav_img.getElementsByTagName("img")[0].setAttribute("src", src);
-	}
-	
+	//如果没有红点第一个白点为红点或者当前鼠标最后经过的白点 
 	//3秒钟切换一次图片，分离图片地址字符串，根据数字确定哪张图片
 	var k = 0;
 	var timer1;
@@ -136,16 +130,11 @@ var picToggleAnimation = function() {
 		timer1 = setInterval(function(){
 			picToggle();
 			},3000);
-		pageover[0].style.display = "none";
-		pageover[1].style.display = "none";
 	}
 	timerPicToggle();
 	//进入图片窗口取消定时器
 	var clearTimer = function() {
 		window.clearInterval(timer1);
-		//图片翻页键显示
-		pageover[0].style.display = "block";
-		pageover[1].style.display = "block";
 	}
 	EventUtil.addHandler(goods_nav_img, "mouseover",clearTimer);
 	EventUtil.addHandler(goods_nav_img, "mouseout",timerPicToggle);
@@ -161,47 +150,40 @@ var picToggleAnimation = function() {
 	}
 	//鼠标移出红点后获取白点位置赋值于K
 	var hidePic  = function() {
-		k = this.getAttribute("data-src").split("")[4];
+		k = this.getAttribute("data-src").split("")[4]-1;
 	}
 	
-	var picToggle_ = function() {
-		if(k >= menu_div.length) {
-			k = 0;
+	//翻页键的使用
+	//上一页
+	var preKey = function(){
+		for(var i = 0;i < menu_div.length; i++) {
+			menu_div[i].style.backgroundColor = "rgb(255,255,255)";
 		}
+		k--;
 		if(k < 0){
-			
+			k = 7;
 		}
 		menu_div[k].style.backgroundColor = "rgb(200,12,34)";
-		src = menu_div[k].getAttribute("data-src");
+		var src = menu_div[k].getAttribute("data-src");
 		goods_nav_img.getElementsByTagName("img")[0].setAttribute("src", src);
-		//鼠标移出后将该红点设置为白色
-		var j = k + 1;
-		if( j < 0) {
-			j = 7;
+		clearTimer();
+	}
+	EventUtil.addHandler(pageover[0], "click", preKey);
+	//下一页
+	var nextKey = function() {
+		for(var i = 0;i < menu_div.length; i++) {
+			menu_div[i].style.backgroundColor = "rgb(255,255,255)";
 		}
-		menu_div[j].style.backgroundColor = "rgb(255,255,255)";
 		k++;
+		if(k > 7){
+			k = 0;
+		}
+		menu_div[k].style.backgroundColor = "rgb(200,12,34)";
+		var src = menu_div[k].getAttribute("data-src");
+		goods_nav_img.getElementsByTagName("img")[0].setAttribute("src", src);
+		clearTimer();
 	}
-	//图片翻页键
-	var pagePre = function() {
-		k = goods_nav_img.getElementsByTagName("img")[0];
-		picToggle_();
-		console.log(1);
-		//.getAttribute("data-src").split("")[4]-1
-	}
-	var pageNext = function() {
-		k = goods_nav_img.getElementsByTagName("img")[0].getAttribute("data-src").split("")[4]+1;
-		picToggle();
-		console.log(k);
-	}
-	var pageOpacity = function() {
-		this.style.display = "block";
-		this.style.opacity = "rgba(0,0,0,0.3)";
-	}
-	EventUtil.addHandler(pageover[0], "click", pagePre);
-	EventUtil.addHandler(pageover[1], "click", pageNext);
-	EventUtil.addHandler(pageover[0], "mouseover", pageOpacity);
-	EventUtil.addHandler(pageover[1], "mouseo", pageOpacity);
+	EventUtil.addHandler(pageover[1], "click", nextKey);
 	//给每个白点添加事件
 	for (var i = 0;i < menu_div.length;i++) {
 		EventUtil.addHandler(menu_div[i], "mouseover",showPic);
@@ -212,7 +194,26 @@ var picToggleAnimation = function() {
 
 addLoadEvent(picToggleAnimation);
 
+//图片翻页键
+var pageToggle  = function() {
+	var goods_nav_midt = document.getElementById("goods_nav_midt");
+	
+	//翻页键显示与隐藏
+	var keyShow = function() {
+		pageover[0].style.display = "block";
+		pageover[1].style.display = "block";
+	}
+	var keyHide = function() {
+		pageover[0].style.display = "none";
+		pageover[1].style.display = "none";
+	}
+	
+	EventUtil.addHandler(goods_nav_midt, "mouseover",keyShow);
+	EventUtil.addHandler(goods_nav_midt, "mouseout",keyHide);
+	
+}
 
+addLoadEvent(pageToggle);
 
 
 
