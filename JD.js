@@ -215,8 +215,46 @@ var pageToggle  = function() {
 
 addLoadEvent(pageToggle);
 
+var divShow = function(obj) {
+	//var myJingD = document.getElementById(id).getElementsByTagName("li")[num];  
+	var myJDid = obj.getAttribute("data-id");
+	var myJD = document.getElementById(myJDid);
+	var current = obj.offsetParent.offsetLeft;
+	var eleLeft = obj.offsetLeft + current;
+	obj.style.backgroundColor = "#fff";
+	obj.style.border = "1px solid #ccc";
+	myJD.style.display = "block";
+	myJD.style.left = eleLeft+"px";	
+	
+}
+var divHide = function(obj) {
+	//var myJingD = document.getElementById(id).getElementsByTagName("li")[num];  
+	var myJDid = obj.getAttribute("data-id");
+	var myJD = document.getElementById(myJDid);
+	myJD.style.display = "none";
+	obj.style.backgroundColor = "rgb(227,228,229)";
+	obj.style.border = "1px solid rgb(227,228,229)";
+}
 
-
+var divAmination = function() {
+	var myJingD = document.getElementById("t_ul").getElementsByTagName("li");
+	for(var i = 0;i < myJingD.length; i++) {
+		var data_id = myJingD[i].getAttribute("data-id");
+		if(data_id){
+			var liShow = function() {
+				divShow(this);
+			}
+			var liHide = function() {
+				divHide(this);
+			}
+			EventUtil.addHandler(myJingD[i], "mouseover",liShow);
+			EventUtil.addHandler(myJingD[i], "mouseout",liHide);
+			
+		}
+	}
+	
+}
+addLoadEvent(divAmination);
 
 
 

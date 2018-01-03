@@ -35,6 +35,9 @@ a {
 #top a:active{
 	color:rgb(157,160,160);
 }
+#t_ul li{
+	overflow:visible;
+}
 #search_menu,#main_t,#main_b{
 	width:1190px;
 	margin:0 auto;
@@ -192,12 +195,15 @@ a {
 #code{
 	width:190px;
 	height:310px;
+	position:absolute;
+	top:29px;
 }
 #code div{
-	width:175px;
+	width:85px;
 	height:80px;
 	padding:10px;
 	position:relative;
+	
 }
 #code div:first-child{
 	border-bottom:1px solid #e7e7e7;
@@ -212,8 +218,6 @@ img.codeimg{
 	border:1px solid #ccc;
 }
 div.code_scri{
-	width:280px;
-	height:80px;
 	display:inline-block;
 	font-size:12px;
 	color:#f10214;
@@ -236,13 +240,23 @@ div.code_scri{
 	position:relative;
 }
 .white_span{
-	width:73px;
+	width:74px;
 	height:3px;
 	position:absolute;
 	top:-2px;
 	background-color:#fff;
 	padding:0;
 	margin:0px;
+}
+#code .white_span{
+	width:58px;
+	height:3px;
+	position:absolute;
+	top:-2px;
+	background-color:#fff;
+	padding:0;
+	margin:0px;
+	border:none;
 }
 #header{
 	position:relative;
