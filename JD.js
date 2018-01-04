@@ -236,28 +236,13 @@ var divHide = function(obj) {
 	obj.style.border = "1px solid rgb(227,228,229)";
 }
 
-var divAmination = function() {
-	var myJingD = document.getElementById("t_ul").getElementsByTagName("li");
-	for(var i = 0;i < myJingD.length; i++) {
-		var data_id = myJingD[i].getAttribute("data-id");
-		if(data_id){
-			var liShow = function() {
-				divShow(this);
-			}
-			var liHide = function() {
-				divHide(this);
-			}
-			EventUtil.addHandler(myJingD[i], "mouseover",liShow);
-			EventUtil.addHandler(myJingD[i], "mouseout",liHide);
-			
-		}
-	}
-	
+var myJingD = document.getElementById("t_ul").getElementsByTagName("li");
+myJingD[3].onmouseover = function() {
+	divShow(this);
 }
-addLoadEvent(divAmination);
-
-
-
+myJingD[3].onmouseout = function() {
+	divHide(this);
+}
 
 
 
